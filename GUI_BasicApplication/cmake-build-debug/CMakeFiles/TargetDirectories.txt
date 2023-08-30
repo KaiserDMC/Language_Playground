@@ -1,0 +1,3 @@
+F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/GUI_BasicApplication.dir
+F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/rebuild_cache.dir
