@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "05_ForLoop",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "05_ForLoop::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-05_ForLoop-Debug-1995170713571a075ba7.json",
+					"name" : "05_ForLoop",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/05.ForLoop/cmake-build-debug",
+		"source" : "F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/05.ForLoop"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
