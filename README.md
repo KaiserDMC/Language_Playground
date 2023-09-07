@@ -1,2 +1,2 @@
-# ANSI-C - Study Projects
- Random projects for ANSI C studies
+# ANSI C & C++ - Study Projects
+ Courses from @ SoftUni, plus random projects for C/C++ studies
