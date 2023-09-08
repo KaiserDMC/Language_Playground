@@ -20,12 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c03f53-6027-47f5-8807-ddde23d9826a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/06.WhileLoop.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a5c03f53-6027-47f5-8807-ddde23d9826a" name="Changes" comment="while-loopy-lol" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,8 +86,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1694172787300</updated>
-      <workItem from="1694172788933" duration="3520000" />
+      <workItem from="1694172788933" duration="3700000" />
     </task>
+    <task id="LOCAL-00001" summary="while-loopy-lol">
+      <option name="closed" value="true" />
+      <created>1694176476584</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1694176476584</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,16 +110,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>226</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="while-loopy-lol" />
+    <option name="LAST_COMMIT_MESSAGE" value="while-loopy-lol" />
   </component>
 </project>

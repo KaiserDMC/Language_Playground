@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "07_NestedLoops",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "07_NestedLoops::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-07_NestedLoops-Debug-46407a9d8a86b57a0c73.json",
+					"name" : "07_NestedLoops",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "F:/JetBrains Projects/CLionProjects/C&Cpp/Study Projects/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug",
+		"source" : "F:/JetBrains Projects/CLionProjects/C&Cpp/Study Projects/01.C_Essentials_SoftUni/07.NestedLoops"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
