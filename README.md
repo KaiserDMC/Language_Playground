@@ -1,2 +1,2 @@
-# ANSI C & C++ - Study Projects
- Random projects from my personal C/C++ studies
+# Language Playground
+ Random courses and basic projects for various programming language studies

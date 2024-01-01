@@ -1,0 +1,14 @@
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\bin\Debug\netcoreapp3.1\AgencyProfit.exe
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\bin\Debug\netcoreapp3.1\AgencyProfit.deps.json
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\bin\Debug\netcoreapp3.1\AgencyProfit.runtimeconfig.json
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\bin\Debug\netcoreapp3.1\AgencyProfit.runtimeconfig.dev.json
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\bin\Debug\netcoreapp3.1\AgencyProfit.dll
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\bin\Debug\netcoreapp3.1\AgencyProfit.pdb
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.csproj.AssemblyReference.cache
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.GeneratedMSBuildEditorConfig.editorconfig
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.AssemblyInfoInputs.cache
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.AssemblyInfo.cs
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.csproj.CoreCompileInputs.cache
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.dll
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.pdb
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\AgencyProfit\obj\Debug\netcoreapp3.1\AgencyProfit.genruntimeconfig.cache

@@ -1,0 +1,3 @@
+F:/Others/Language Playground/02.Basic_Projects_C/GUI_BasicApplication/cmake-build-debug/CMakeFiles/GUI_BasicApplication.dir
+F:/Others/Language Playground/02.Basic_Projects_C/GUI_BasicApplication/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/Others/Language Playground/02.Basic_Projects_C/GUI_BasicApplication/cmake-build-debug/CMakeFiles/rebuild_cache.dir

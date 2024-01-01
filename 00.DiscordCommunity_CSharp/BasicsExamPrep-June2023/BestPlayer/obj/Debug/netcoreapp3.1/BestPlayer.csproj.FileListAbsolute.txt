@@ -1,0 +1,14 @@
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\bin\Debug\netcoreapp3.1\BestPlayer.exe
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\bin\Debug\netcoreapp3.1\BestPlayer.deps.json
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\bin\Debug\netcoreapp3.1\BestPlayer.runtimeconfig.json
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\bin\Debug\netcoreapp3.1\BestPlayer.runtimeconfig.dev.json
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\bin\Debug\netcoreapp3.1\BestPlayer.dll
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\bin\Debug\netcoreapp3.1\BestPlayer.pdb
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.csproj.AssemblyReference.cache
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.GeneratedMSBuildEditorConfig.editorconfig
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.AssemblyInfoInputs.cache
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.AssemblyInfo.cs
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.csproj.CoreCompileInputs.cache
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.dll
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.pdb
+F:\SoftUni\_All-in-one Code\00.DiscordCommunity\BasicsExamPrep-June2023\BestPlayer\obj\Debug\netcoreapp3.1\BestPlayer.genruntimeconfig.cache
