@@ -1,4 +1,4 @@
-# Install script for directory: F:/JetBrains Projects/CLionProjects/C&Cpp/Study Projects/01.C_Essentials_SoftUni/07.NestedLoops
+# Install script for directory: F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "F:/JetBrains Projects/CLionProjects/C&Cpp/Study Projects/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
