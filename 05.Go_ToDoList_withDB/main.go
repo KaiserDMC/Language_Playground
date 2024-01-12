@@ -31,7 +31,7 @@ var data = map[string][]Todo{
 }
 
 func initDataFromDB(db *sql.DB) error {
-	rows, err := db.Query("SELECT id, label, date, completed FROM todos")
+	rows, err := db.Query("SELECT id, label, date, completed FROM tasks")
 	if err != nil {
 		return err
 	}
@@ -49,21 +49,12 @@ func initDataFromDB(db *sql.DB) error {
 		todos = append(todos, todo)
 	}
 
-	// Sort todos into TodoList and CompletedTasks
+	// Sort todos by date
 	sort.Slice(todos, func(i, j int) bool {
-		if todos[i].Completed && !todos[j].Completed {
-			// Completed tasks go to CompletedTasks first
-			return true
-		} else if !todos[i].Completed && todos[j].Completed {
-			// Uncompleted tasks go to TodoList first
-			return false
-		} else {
-			// For tasks with the same completion status, sort by date
-			return todos[i].Date.Before(todos[j].Date)
-		}
+		return todos[i].Date.Before(todos[j].Date)
 	})
 
-	// Separate tasks into TodoList and CompletedTasks
+	// Separate tasks into TodoList and CompletedTasks in memory
 	var todoList, completedTasks []Todo
 	for _, todo := range todos {
 		if todo.Completed {
@@ -73,6 +64,7 @@ func initDataFromDB(db *sql.DB) error {
 		}
 	}
 
+	// Update the in-memory data
 	data["TodoList"] = todoList
 	data["CompletedTasks"] = completedTasks
 
@@ -124,7 +116,7 @@ func addTodoHandler(w http.ResponseWriter, r *http.Request) {
 		defer db.Close()
 
 		// Insert the new Todo into the database
-		_, err = db.Exec(`INSERT INTO todos (id, label, date, completed) VALUES (?, ?, ?, ?)`, newTodo.Id, newTodo.Label, newTodo.Date, newTodo.Completed)
+		_, err = db.Exec(`INSERT INTO tasks (id, label, date, completed) VALUES (?, ?, ?, ?)`, newTodo.Id, newTodo.Label, newTodo.Date, newTodo.Completed)
 		if err != nil {
 			fmt.Println("Error inserting todo:", err)
 			http.Error(w, "Error inserting todo", http.StatusInternalServerError)
@@ -134,14 +126,10 @@ func addTodoHandler(w http.ResponseWriter, r *http.Request) {
 		// Append the newTodo to the in-memory data
 		data["TodoList"] = append(data["TodoList"], newTodo)
 
-		// // Trigger htmx refresh to update the Todo list
+		// Trigger htmx refresh to update the Todo list
 		w.Header().Set("HX-Trigger-After-Swap", "todo-list-update")
-		fmt.Println("Refresh triggered")
 
-		for key, value := range data {
-			fmt.Printf("Key: %s, Value: %v\n", key, value)
-		}
-
+		fmt.Println("Task added to list!")
 		return
 	}
 
@@ -152,9 +140,7 @@ func markAsCompletedHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		taskId := r.FormValue("taskId")
 
-		fmt.Println("Received taskId:", taskId)
-
-		// Try to open db
+		// Open SQLite database
 		db, err := sql.Open("sqlite3", "todos.db")
 		if err != nil {
 			http.Error(w, "Error opening database", http.StatusInternalServerError)
@@ -162,14 +148,14 @@ func markAsCompletedHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		defer db.Close()
 
-		// Try to update db
-		_, err = db.Exec("UPDATE todos SET completed = true WHERE id = ?", taskId)
+		// Update the bool field of Todo into the database
+		_, err = db.Exec("UPDATE tasks SET completed = true WHERE id = ?", taskId)
 		if err != nil {
 			http.Error(w, "Error updating completed status in the database", http.StatusInternalServerError)
 			return
 		}
 
-		// Find and remove the completed task from TodoList
+		// Find and remove the completed task from in-memory TodoList
 		var completedTodo Todo
 		for i, todo := range data["TodoList"] {
 			if todo.Id == taskId {
@@ -179,16 +165,13 @@ func markAsCompletedHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		// Add the completed task to CompletedTasks
+		// Add the completed task to the in-memory CompletedTasks
 		data["CompletedTasks"] = append(data["CompletedTasks"], completedTodo)
 
 		// Trigger htmx refresh to update both tables
-		w.Header().Set("HX-Trigger-After-Swap", "load delay:1s, body")
+		w.Header().Set("HX-Trigger", "todo-list-update")
 
-		// Logging
-
-		fmt.Println("CompletedTasks after:", data["CompletedTasks"])
-
+		fmt.Println("Task marked as completed!")
 		return
 	}
 
@@ -207,9 +190,11 @@ func main() {
 		}
 		defer db.Close()
 
+		fmt.Println("SQLite Database created!")
+
 		// Create Todo table
 		_, err = db.Exec(`
-			CREATE TABLE IF NOT EXISTS todos (
+			CREATE TABLE IF NOT EXISTS tasks (
 				id TEXT PRIMARY KEY,
 				label TEXT,
 				date DATETIME,
@@ -220,6 +205,32 @@ func main() {
 			fmt.Println("Error creating table:", err)
 			return
 		}
+
+		fmt.Println("Database table created!")
+
+		// Insert initial data into the database from Todo (in-memory)
+		for _, todo := range data["TodoList"] {
+			_, err := db.Exec(`
+                INSERT INTO tasks (id, label, date, completed) VALUES (?, ?, ?, ?)
+            `, todo.Id, todo.Label, todo.Date, todo.Completed)
+			if err != nil {
+				fmt.Println("Error inserting todo:", err)
+				return
+			}
+		}
+
+		// Insert initial data into the database from Completed (in-memory)
+		for _, todo := range data["CompletedTasks"] {
+			_, err := db.Exec(`
+                INSERT INTO tasks (id, label, date, completed) VALUES (?, ?, ?, ?)
+            `, todo.Id, todo.Label, todo.Date, todo.Completed)
+			if err != nil {
+				fmt.Println("Error inserting completed:", err)
+				return
+			}
+		}
+
+		fmt.Println("Initial template data loaded!")
 	} else if err == nil {
 		// If the database file exists, open it and fetch data
 		db, err := sql.Open("sqlite3", "todos.db")
@@ -235,6 +246,8 @@ func main() {
 			fmt.Println("Error initializing data from database:", err)
 			return
 		}
+
+		fmt.Println("Database entries successfully loaded! (application re-open)")
 	} else {
 		fmt.Println("Error checking if database file exists:", err)
 		return
