@@ -22,24 +22,42 @@
     <div class="row mt-4 g-4">
       <div class="col-1"></div>
       <div class="col-6">
+        <!-- Current list of tasks -->
         <h2 class="mb-4">To Do List:</h2>
-
-        <ul
-          class="list-group fs-5 me-5"
-          id="todo-list"
-          hx-trigger="refresh from:body"
-        >
-          {{ range .TodoList }}
-          <li class="list-group-item bg-primary text-white">
-            {{ .Label }} -> Finish until Date: {{ .Date }}
-            <input type="checkbox" {{ if .Completed }}checked{{ end }} />
-          </li>
-          {{ end }}
-        </ul>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Task Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="todo-list">
+            {{ range $index, $task := .TodoList }}
+            <tr>
+              <td>{{ $task.Label }}</td>
+              <td>{{ $task.Date.Format "2006-01-02" }}</td>
+              <td>
+                <form
+                  hx-post="/markAsCompleted"
+                  hx-swap="outerHTML"
+                  hx-target="#todo-list"
+                  hx-trigger="load delay:1s, body"
+                >
+                  <input type="hidden" name="taskId" value="{{ $task.Id }}" />
+                  <button type="submit" class="btn btn-success">
+                    Mark Completed
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
       </div>
       <div class="col-4">
-        <h2 class="mb-4">Add New Todo Task:</h2>
-
+        <!-- Submit form for new "todo" item -->
+        <h2 class="mb-4">Add "To Do" task:</h2>
         <form
           id="add-todo-form"
           hx-post="/addTodo"
@@ -47,7 +65,7 @@
           hx-swap="beforeend"
         >
           <div class="md-2">
-            <label for="label">Label:</label>
+            <label for="label">Task Name:</label>
             <input
               type="text"
               id="label"
@@ -58,7 +76,7 @@
             />
           </div>
           <div class="md-3">
-            <label for="date">Date:</label>
+            <label for="date">Complete until:</label>
             <input
               type="date"
               id="date"
@@ -69,8 +87,32 @@
             />
           </div>
 
-          <button type="submit" class="btn btn-primary">Add Task</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="reset" class="btn btn-danger">Reset Form</button>
         </form>
+
+        <!-- Completed tasks table -->
+        <h2 class="mt-5 mb-4">Completed Tasks:</h2>
+        <table
+          class="table table-secondary"
+          id="completed-tasks"
+          hx-trigger="load delay:1s, todo-list-update from:body"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Task Name</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range $index, $task := .CompletedTasks }}
+            <tr>
+              <td>{{ $task.Label }}</td>
+              <td>{{ $task.Date.Format "2006-01-02" }}</td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
       </div>
     </div>
   </body>

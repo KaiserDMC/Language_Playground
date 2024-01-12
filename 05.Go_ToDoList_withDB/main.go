@@ -23,8 +23,10 @@ type Todo struct {
 
 var data = map[string][]Todo{
 	"TodoList": {
-		{Id: uuid.New().String(), Label: "Template", Date: time.Now(), Completed: false},
-		{Id: uuid.New().String(), Label: "Test Number 2", Date: time.Now(), Completed: true},
+		{Id: uuid.New().String(), Label: "Template ToDo", Date: time.Now(), Completed: false},
+	},
+	"CompletedTasks": {
+		{Id: uuid.New().String(), Label: "Template Completed", Date: time.Now(), Completed: true},
 	},
 }
 
@@ -47,12 +49,32 @@ func initDataFromDB(db *sql.DB) error {
 		todos = append(todos, todo)
 	}
 
-	// Sort todos by Completed (false first, true later)
+	// Sort todos into TodoList and CompletedTasks
 	sort.Slice(todos, func(i, j int) bool {
-		return !todos[i].Completed && todos[j].Completed
+		if todos[i].Completed && !todos[j].Completed {
+			// Completed tasks go to CompletedTasks first
+			return true
+		} else if !todos[i].Completed && todos[j].Completed {
+			// Uncompleted tasks go to TodoList first
+			return false
+		} else {
+			// For tasks with the same completion status, sort by date
+			return todos[i].Date.Before(todos[j].Date)
+		}
 	})
 
-	data["TodoList"] = todos
+	// Separate tasks into TodoList and CompletedTasks
+	var todoList, completedTasks []Todo
+	for _, todo := range todos {
+		if todo.Completed {
+			completedTasks = append(completedTasks, todo)
+		} else {
+			todoList = append(todoList, todo)
+		}
+	}
+
+	data["TodoList"] = todoList
+	data["CompletedTasks"] = completedTasks
 
 	return nil
 }
@@ -60,12 +82,14 @@ func initDataFromDB(db *sql.DB) error {
 func handler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("index.html")
 	if err != nil {
+		log.Printf("Error parsing template: %v", err)
 		http.Error(w, "Error parsing template", http.StatusInternalServerError)
 		return
 	}
 
 	err = tmpl.Execute(w, data)
 	if err != nil {
+		log.Printf("Error executing template: %v", err)
 		http.Error(w, "Error executing template", http.StatusInternalServerError)
 		return
 	}
@@ -111,12 +135,59 @@ func addTodoHandler(w http.ResponseWriter, r *http.Request) {
 		data["TodoList"] = append(data["TodoList"], newTodo)
 
 		// // Trigger htmx refresh to update the Todo list
-		w.Header().Set("HX-Trigger", "refresh")
+		w.Header().Set("HX-Trigger-After-Swap", "todo-list-update")
 		fmt.Println("Refresh triggered")
 
 		for key, value := range data {
 			fmt.Printf("Key: %s, Value: %v\n", key, value)
 		}
+
+		return
+	}
+
+	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+}
+
+func markAsCompletedHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		taskId := r.FormValue("taskId")
+
+		fmt.Println("Received taskId:", taskId)
+
+		// Try to open db
+		db, err := sql.Open("sqlite3", "todos.db")
+		if err != nil {
+			http.Error(w, "Error opening database", http.StatusInternalServerError)
+			return
+		}
+		defer db.Close()
+
+		// Try to update db
+		_, err = db.Exec("UPDATE todos SET completed = true WHERE id = ?", taskId)
+		if err != nil {
+			http.Error(w, "Error updating completed status in the database", http.StatusInternalServerError)
+			return
+		}
+
+		// Find and remove the completed task from TodoList
+		var completedTodo Todo
+		for i, todo := range data["TodoList"] {
+			if todo.Id == taskId {
+				completedTodo = todo
+				data["TodoList"] = append(data["TodoList"][:i], data["TodoList"][i+1:]...)
+				break
+			}
+		}
+
+		// Add the completed task to CompletedTasks
+		data["CompletedTasks"] = append(data["CompletedTasks"], completedTodo)
+
+		// Trigger htmx refresh to update both tables
+		w.Header().Set("HX-Trigger-After-Swap", "load delay:1s, body")
+
+		// Logging
+
+		fmt.Println("CompletedTasks after:", data["CompletedTasks"])
 
 		return
 	}
@@ -172,6 +243,7 @@ func main() {
 	// Start HTTP server
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/addTodo", addTodoHandler)
+	http.HandleFunc("/markAsCompleted", markAsCompletedHandler)
 
 	fmt.Println("Server is running on :5050...")
 	log.Fatal(http.ListenAndServe(":5050", nil))
