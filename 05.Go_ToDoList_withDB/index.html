@@ -37,7 +37,7 @@
                 <form
                   hx-post="/markAsCompleted"
                   hx-swap="outerHTML"
-                  hx-target="#todo-list"
+                  hx-target="#completed-tasks"
                   hx-trigger="click"
                 >
                   <input type="hidden" name="taskId" value="{{ $task.Id }}" />
@@ -58,6 +58,7 @@
           id="add-todo-form"
           hx-post="/addTodo"
           hx-target="#todo-list"
+          hx-trigger="click"
           hx-swap="beforeend"
         >
           <div class="md-2">

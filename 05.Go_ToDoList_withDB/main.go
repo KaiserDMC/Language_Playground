@@ -127,7 +127,7 @@ func addTodoHandler(w http.ResponseWriter, r *http.Request) {
 		data["TodoList"] = append(data["TodoList"], newTodo)
 
 		// Trigger htmx refresh to update the Todo list
-		w.Header().Set("HX-Trigger-After-Swap", "todo-list-update")
+		//w.Header().Set("HX-Trigger-After-Swap", "todo-list-update")
 
 		fmt.Println("Task added to list!")
 		return
@@ -169,7 +169,7 @@ func markAsCompletedHandler(w http.ResponseWriter, r *http.Request) {
 		data["CompletedTasks"] = append(data["CompletedTasks"], completedTodo)
 
 		// Trigger htmx refresh to update both tables
-		w.Header().Set("HX-Trigger", "todo-list-update")
+		//w.Header().Set("HX-Trigger", "todo-list-update")
 
 		fmt.Println("Task marked as completed!")
 		return
