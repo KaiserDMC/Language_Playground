@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="GUI_BasicApplication" targetName="GUI_BasicApplication" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e5ae9e85-67a8-4326-abfc-a15927d6ddde" name="Changes" comment="basic-gui-app-testing">
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/.idea/ConsoleApp_CalculatorOfThings.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/bmi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/bmi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/bmr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/bmr.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/cache-v2-5e5872e793c98c496d60.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-54d929cd260b5ee082d1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-bcb6799c6faa06b744d7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/index-2023-08-29T18-00-28-0620.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/target-ConsoleApp_CalculatorOfThings-Debug-e463f269d08282df5f24.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-e2dffa31b702d1ea6bee.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.ninja_deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/.ninja_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/3.26.4/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/build.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/currency.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/currency.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/menu.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/menu.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/temperature.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/temperature.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/temperature_table.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/ConsoleApp_CalculatorOfThings/temperature_table.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/.idea/GUI_BasicApplication.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/cache-v2-161c9af631233087a4e7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-0113a9d544983b08bda3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-64ccdea005a1c3b393c2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/index-2023-08-30T15-09-15-0911.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/target-GUI_BasicApplication-Debug-b9020879768a31bba9ee.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-e2dffa31b702d1ea6bee.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.ninja_deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/.ninja_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/3.26.4/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/build.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/gui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../00.OwnProjects/GUI_BasicApplication/main.c" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="2.1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2UhwyXGYV1oEDopnuS6RjrW6dv3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.sync",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Python.gui">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GUI_BasicApplication" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GUI_BasicApplication" TARGET_NAME="GUI_BasicApplication" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GUI_BasicApplication" RUN_TARGET_NAME="GUI_BasicApplication">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GUI_BasicApplication" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.GUI_BasicApplication" />
+      <item itemvalue="Python.gui" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.gui" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5ae9e85-67a8-4326-abfc-a15927d6ddde" name="Changes" comment="" />
+      <created>1693405374201</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693405374201</updated>
+      <workItem from="1693405375503" duration="3922000" />
+      <workItem from="1693409944140" duration="7000" />
+      <workItem from="1693409960095" duration="68000" />
+      <workItem from="1704134796271" duration="16000" />
+    </task>
+    <task id="LOCAL-00001" summary="basic-gui-app-testing">
+      <option name="closed" value="true" />
+      <created>1693409252946</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693409252946</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="basic-gui-app-testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic-gui-app-testing" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
