@@ -1,0 +1,5 @@
+Key: xVp74ZHtYvmzMCJsAiCm6mr83OU16xGbDiAcXEwHutk=
+Salt: g0lang_b3st_lang
+N: 16384
+R: 8
+P: 1
