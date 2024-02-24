@@ -1,25 +1,17 @@
 package main
 
 import (
-	"bytes"
-	"crypto/aes"
-	"crypto/cipher"
-	"crypto/rand"
 	"database/sql"
 	"encoding/base64"
-	"errors"
 	"flag"
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
-	"strings"
 	"syscall"
 
 	"github.com/atotto/clipboard"
 	"github.com/google/uuid"
 	_ "github.com/mattn/go-sqlite3"
-	"golang.org/x/crypto/scrypt"
 	"golang.org/x/crypto/ssh/terminal"
 )
 
@@ -35,7 +27,7 @@ const (
 	scryptN      = 16384
 	scryptR      = 8
 	scryptP      = 1
-	scryptSalt   = "g0lang_b3st_lang"
+	scryptSalt   = ""
 	scryptParams = scryptN | scryptR<<16 | scryptP<<24
 	cryptConfigs = "crypt-configs"
 	vaultFolder  = "vaults"
@@ -51,13 +43,10 @@ func main() {
 	cleanCmd := flag.NewFlagSet("clean", flag.ExitOnError)
 
 	vaultName := vaultCmd.String("name", "", "Specify the vault name")
-	vaultPassword := vaultCmd.String("vaultPassword", "", "Specify the vault's master password")
 
 	keyVault := keyCmd.String("vault", "", "Specify the vault name for the key")
-	keyVaultPassword := keyCmd.String("vaultPassword", "", "Specify the vault's master password")
 	keyName := keyCmd.String("name", "", "Specify the name for the key")
 	keyUrl := keyCmd.String("url", "", "Specify the URL for the key")
-	keyPassword := keyCmd.String("password", "", "Specify the password for the key")
 
 	listVaults := listCmd.Bool("vaults", false, "List all vaults")
 	listKeys := listCmd.Bool("keys", false, "List keys in a vault")
@@ -67,6 +56,13 @@ func main() {
 	showKeyName := showCmd.String("key", "", "Specify the key name for showing")
 
 	helpCmd := flag.NewFlagSet("help", flag.ExitOnError)
+
+	// Extract the provided by the user SALT
+	scryptSalt, err := os.ReadFile("user-salt.txt")
+	if err != nil {
+		fmt.Println("Error reading 'user-salt' file:", err)
+		os.Exit(1)
+	}
 
 	if len(os.Args) < 2 {
 		fmt.Println("Please provide a valid command! In case you need more information you can use 'help' command!")
@@ -81,15 +77,24 @@ func main() {
 			case "vault":
 				vaultCmd.Parse(os.Args[3:])
 				if vaultCmd.Parsed() {
-					if *vaultName == "" || *vaultPassword == "" {
-						fmt.Println("Please provide vault name and a vault master password")
+					if *vaultName == "" {
+						fmt.Println("Please provide a vault name")
+						os.Exit(1)
+					}
+
+					// Prompt user for the vault password
+					fmt.Print("Enter the vault password: ")
+					vaultPassword, err := terminal.ReadPassword(int(syscall.Stdin))
+					fmt.Println() // Print a newline after user input
+					if err != nil {
+						fmt.Println("Error reading vault password:", err)
 						os.Exit(1)
 					}
 
 					// Check if "vaults" folder exists
-					err := CreateFolderIfNotExists("vaults")
-					if err != nil {
-						fmt.Println("Error creating 'vaults' folder:", err)
+					folderErr := CreateFolderIfNotExists("vaults")
+					if folderErr != nil {
+						fmt.Println("Error creating 'vaults' folder:", folderErr)
 						return
 					}
 
@@ -101,9 +106,9 @@ func main() {
 					}
 
 					// Derive key from the vault password using scrypt
-					derivedKey, err := DeriveKey(*vaultPassword)
+					derivedKey, err := DeriveUserKey(string(vaultPassword))
 					if err != nil {
-						fmt.Println("Error deriving key:", err)
+						fmt.Println(err)
 						os.Exit(1)
 					}
 
@@ -123,7 +128,7 @@ func main() {
 					}
 
 					// Encrypt and save the vault password to a file
-					encryptedPassword, err := encrypt([]byte(*vaultPassword), derivedKey)
+					encryptedPassword, err := encrypt([]byte(vaultPassword), derivedKey)
 					if err != nil {
 						fmt.Println("Error encrypting password:", err)
 						os.Exit(1)
@@ -169,58 +174,73 @@ func main() {
 			case "key":
 				keyCmd.Parse(os.Args[3:])
 				if keyCmd.Parsed() {
-					if *keyVault == "" || *keyVaultPassword == "" {
-						fmt.Println("Please provide storage name and vault master password")
+					if *keyVault == "" || *keyName == "" || *keyUrl == "" {
+						fmt.Println("Please provide vault name, key name, and key URL")
+						os.Exit(1)
+					}
+
+					// Prompt user for the vault password
+					fmt.Print("Enter the vault password: ")
+					vaultPassword, err := terminal.ReadPassword(int(syscall.Stdin))
+					fmt.Println() // Print a newline after user input
+					if err != nil {
+						fmt.Println("Error reading vault password:", err)
+						os.Exit(1)
+					}
+
+					// Prompt user for the key password
+					fmt.Print("Enter the key password: ")
+					keyPassword, err := terminal.ReadPassword(int(syscall.Stdin))
+					fmt.Println() // Print a newline after user input
+					if err != nil {
+						fmt.Println("Error reading key password:", err)
 						os.Exit(1)
 					}
 
 					// Load the stored configuration from the configuration file
-					configData, err := os.ReadFile(filepath.Join(cryptConfigs, *keyVault))
+					configData, err := LoadConfig(*keyVault)
 					if err != nil {
-						fmt.Println("Error reading configuration file:", err)
+						fmt.Println(err)
 						os.Exit(1)
 					}
 
 					// Parse the configuration data
-					var storedKey string
-					var storedSalt string
-					var storedN, storedR, storedP int
-					_, err = fmt.Sscanf(string(configData), "Key: %s\nSalt: %s\nN: %d\nR: %d\nP: %d\n",
-						&storedKey, &storedSalt, &storedN, &storedR, &storedP)
+					storedKey, err := ParseConfig(configData)
 					if err != nil {
-						fmt.Println("Error parsing configuration data:", err)
+						fmt.Println(err)
 						os.Exit(1)
 					}
 
 					// Decode the stored key from base64
-					decodedKey, err := base64.StdEncoding.DecodeString(storedKey)
+					decodedKey, err := DecodeKey(storedKey)
 					if err != nil {
-						fmt.Println("Error decoding stored key:", err)
+						fmt.Println(err)
 						os.Exit(1)
 					}
 
-					fmt.Printf("Stored Key: %x\n", decodedKey)
+					//fmt.Printf("Stored Key: %x\n", decodedKey)
 
 					// Derive key from the vault password using scrypt
-					derivedKey, err := DeriveKey(*keyVaultPassword)
+					derivedKey, err := DeriveUserKey(string(vaultPassword))
 					if err != nil {
-						fmt.Println("Error deriving key:", err)
+						fmt.Println(err)
 						os.Exit(1)
 					}
 
 					// Print the derived key as a hexadecimal string
-					fmt.Printf("User Derived Key: %x\n", derivedKey)
+					//fmt.Printf("User Derived Key: %x\n", derivedKey)
 
 					// Compare the derived keys
-					if !bytes.Equal(decodedKey, derivedKey) {
-						fmt.Println("Vault password does not match. Access denied.")
+					err = CompareKeys(decodedKey, derivedKey)
+					if err != nil {
+						fmt.Println(err)
 						os.Exit(1)
 					}
 
-					fmt.Printf("User Derived Key: %x\n", derivedKey)
+					//fmt.Printf("User Derived Key: %x\n", derivedKey)
 
 					// Encrypt the password using the derived key
-					encryptedPassword, err := encrypt([]byte(*keyPassword), derivedKey)
+					encryptedPassword, err := encrypt([]byte(keyPassword), derivedKey)
 					if err != nil {
 						fmt.Println("Error encrypting password:", err)
 						os.Exit(1)
@@ -309,49 +329,46 @@ func main() {
 			}
 
 			// Load the stored configuration from the configuration file
-			configData, err := os.ReadFile(filepath.Join(cryptConfigs, vaultName))
+			configData, err := LoadConfig(vaultName)
 			if err != nil {
-				fmt.Println("Error reading configuration file:", err)
+				fmt.Println(err)
 				os.Exit(1)
 			}
 
 			// Parse the configuration data
-			var storedKey string
-			var storedSalt string
-			var storedN, storedR, storedP int
-			_, err = fmt.Sscanf(string(configData), "Key: %s\nSalt: %s\nN: %d\nR: %d\nP: %d\n",
-				&storedKey, &storedSalt, &storedN, &storedR, &storedP)
+			storedKey, err := ParseConfig(configData)
 			if err != nil {
-				fmt.Println("Error parsing configuration data:", err)
+				fmt.Println(err)
 				os.Exit(1)
 			}
 
 			// Decode the stored key from base64
-			decodedKey, err := base64.StdEncoding.DecodeString(storedKey)
+			decodedKey, err := DecodeKey(storedKey)
 			if err != nil {
-				fmt.Println("Error decoding stored key:", err)
+				fmt.Println(err)
 				os.Exit(1)
 			}
 
-			fmt.Printf("Stored Key: %x\n", decodedKey)
+			//fmt.Printf("Stored Key: %x\n", decodedKey)
 
 			// Derive key from the vault password using scrypt
-			derivedKey, err := DeriveKey(string(vaultPassword))
+			derivedKey, err := DeriveUserKey(string(vaultPassword))
 			if err != nil {
 				fmt.Println("Error deriving key:", err)
 				os.Exit(1)
 			}
 
 			// Print the derived key as a hexadecimal string
-			fmt.Printf("User Derived Key: %x\n", derivedKey)
+			//fmt.Printf("User Derived Key: %x\n", derivedKey)
 
 			// Compare the derived keys
-			if !bytes.Equal(decodedKey, derivedKey) {
-				fmt.Println("Vault password does not match. Access denied.")
+			err = CompareKeys(decodedKey, derivedKey)
+			if err != nil {
+				fmt.Println(err)
 				os.Exit(1)
 			}
 
-			fmt.Printf("User Derived Key: %x\n", derivedKey)
+			//fmt.Printf("User Derived Key: %x\n", derivedKey)
 
 			// Use the vault name to open the appropriate database
 			db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", vaultName))
@@ -370,13 +387,16 @@ func main() {
 			defer rows.Close()
 
 			fmt.Printf("List of Keys in Vault %s:\n", vaultName)
+			index := 1
 			for rows.Next() {
 				var name, url string
 				if err := rows.Scan(&name, &url); err != nil {
 					fmt.Println("Error scanning database rows:", err)
 					os.Exit(1)
 				}
-				fmt.Printf("Name: %s, URL: %s\n", name, url)
+
+				fmt.Printf("%v. Name: %s, URL: %s\n", index, name, url)
+				index++
 			}
 
 		} else {
@@ -405,40 +425,37 @@ func main() {
 		}
 
 		// Load the stored configuration from the configuration file
-		configData, err := os.ReadFile(filepath.Join(cryptConfigs, vaultName))
+		configData, err := LoadConfig(vaultName)
 		if err != nil {
-			fmt.Println("Error reading configuration file:", err)
+			fmt.Println(err)
 			os.Exit(1)
 		}
 
 		// Parse the configuration data
-		var storedKey string
-		var storedSalt string
-		var storedN, storedR, storedP int
-		_, err = fmt.Sscanf(string(configData), "Key: %s\nSalt: %s\nN: %d\nR: %d\nP: %d\n",
-			&storedKey, &storedSalt, &storedN, &storedR, &storedP)
+		storedKey, err := ParseConfig(configData)
 		if err != nil {
-			fmt.Println("Error parsing configuration data:", err)
+			fmt.Println(err)
 			os.Exit(1)
 		}
 
 		// Decode the stored key from base64
-		decodedKey, err := base64.StdEncoding.DecodeString(storedKey)
+		decodedKey, err := DecodeKey(storedKey)
 		if err != nil {
-			fmt.Println("Error decoding stored key:", err)
+			fmt.Println(err)
 			os.Exit(1)
 		}
 
 		// Derive key from the vault password using scrypt
-		derivedKey, err := DeriveKey(string(vaultPassword))
+		derivedKey, err := DeriveUserKey(string(vaultPassword))
 		if err != nil {
-			fmt.Println("Error deriving key:", err)
+			fmt.Println(err)
 			os.Exit(1)
 		}
 
 		// Compare the derived keys
-		if !bytes.Equal(decodedKey, derivedKey) {
-			fmt.Println("Vault password does not match. Access denied.")
+		err = CompareKeys(decodedKey, derivedKey)
+		if err != nil {
+			fmt.Println(err)
 			os.Exit(1)
 		}
 
@@ -470,7 +487,7 @@ func main() {
 		}
 
 		// Print the decrypted password to the terminal
-		fmt.Printf("Decrypted Password for Key %s in Vault %s: %s\n", keyName, vaultName, decryptedPassword)
+		//fmt.Printf("Decrypted Password for Key %s in Vault %s: %s\n", keyName, vaultName, decryptedPassword)
 
 		// Copy the decrypted password to the clipboard
 		err = clipboard.WriteAll(string(decryptedPassword))
@@ -495,81 +512,4 @@ func main() {
 		fmt.Println("Unknown command. Please use 'create' or 'help'")
 		os.Exit(1)
 	}
-}
-
-// Encrypt encrypts the data using the provided key.
-func encrypt(data, key []byte) ([]byte, error) {
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		return nil, err
-	}
-
-	ciphertext := make([]byte, aes.BlockSize+len(data))
-	iv := ciphertext[:aes.BlockSize]
-	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		return nil, err
-	}
-
-	stream := cipher.NewCFBEncrypter(block, iv)
-	stream.XORKeyStream(ciphertext[aes.BlockSize:], data)
-
-	return ciphertext, nil
-}
-
-// Decrypt decrypts the data using the provided key.
-func decrypt(ciphertext []byte, key []byte) ([]byte, error) {
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		return nil, err
-	}
-
-	if len(ciphertext) < aes.BlockSize {
-		return nil, errors.New("ciphertext too short")
-	}
-
-	iv := ciphertext[:aes.BlockSize]
-	ciphertext = ciphertext[aes.BlockSize:]
-
-	stream := cipher.NewCFBDecrypter(block, iv)
-	stream.XORKeyStream(ciphertext, ciphertext)
-
-	return ciphertext, nil
-}
-
-// DeriveKey derives a key from the given password using scrypt.
-func DeriveKey(password string) ([]byte, error) {
-	return scrypt.Key([]byte(password), []byte(scryptSalt), scryptN, scryptR, scryptP, keyLen)
-}
-
-// CreateFolderIfNotExists creates a folder if it doesn't exist.
-func CreateFolderIfNotExists(folderPath string) error {
-	if _, err := os.Stat(folderPath); os.IsNotExist(err) {
-		return os.MkdirAll(folderPath, 0755)
-	}
-	return nil
-}
-
-// SaveToFile saves data to a file with the given filepath.
-func SaveToFile(filepath string, data []byte) error {
-	return os.WriteFile(filepath, data, 0600)
-}
-
-// Function to clean unencrypted files
-func cleanUnencryptedFiles(dirPath string) error {
-	files, err := os.ReadDir(dirPath)
-	if err != nil {
-		return err
-	}
-
-	for _, file := range files {
-		if !strings.HasSuffix(file.Name(), ".enc") {
-			filePath := filepath.Join(dirPath, file.Name())
-			err := os.Remove(filePath)
-			if err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
 }
