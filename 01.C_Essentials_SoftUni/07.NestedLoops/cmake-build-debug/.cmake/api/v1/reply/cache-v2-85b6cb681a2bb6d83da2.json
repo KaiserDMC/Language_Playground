@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug"
+			"value" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug"
 		},
 		{
 			"name" : "07_NestedLoops_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops"
+			"value" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "f:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug"
+			"value" : "f:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "0"
+			"value" : "8"
 		},
 		{
 			"name" : "CMAKE_COLOR_DIAGNOSTICS",
@@ -467,7 +467,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -539,7 +539,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops"
+			"value" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",

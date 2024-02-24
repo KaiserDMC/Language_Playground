@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug",
-		"source" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops"
+		"build" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug",
+		"source" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops"
 	},
 	"version" : 
 	{

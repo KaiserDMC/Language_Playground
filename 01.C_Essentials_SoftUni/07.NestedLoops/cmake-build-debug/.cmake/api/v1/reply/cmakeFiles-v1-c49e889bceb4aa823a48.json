@@ -16,7 +16,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.27.0/CMakeSystem.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.27.8/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -275,7 +275,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.27.0/CMakeCCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.27.8/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -349,7 +349,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.27.0/CMakeRCCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.27.8/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -428,7 +428,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.27.0/CMakeCCompiler.cmake"
+			"path" : "cmake-build-debug/CMakeFiles/3.27.8/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -439,8 +439,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug",
-		"source" : "F:/JetBrains Projects/CLionProjects/Study Projects - C_Cpp/01.C_Essentials_SoftUni/07.NestedLoops"
+		"build" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug",
+		"source" : "F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops"
 	},
 	"version" : 
 	{

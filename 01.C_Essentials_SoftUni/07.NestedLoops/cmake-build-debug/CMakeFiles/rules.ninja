@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Users\Souta\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -S"F:\JetBrains Projects\CLionProjects\Study Projects - C_Cpp\01.C_Essentials_SoftUni\07.NestedLoops" -B"F:\JetBrains Projects\CLionProjects\Study Projects - C_Cpp\01.C_Essentials_SoftUni\07.NestedLoops\cmake-build-debug"
+  command = C:\Users\Souta\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -S"F:\Others\Language Playground\01.C_Essentials_SoftUni\07.NestedLoops" -B"F:\Others\Language Playground\01.C_Essentials_SoftUni\07.NestedLoops\cmake-build-debug"
   description = Re-running CMake...
   generator = 1
 

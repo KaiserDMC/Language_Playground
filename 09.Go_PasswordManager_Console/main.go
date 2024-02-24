@@ -40,7 +40,7 @@ func main() {
 	keyCmd := flag.NewFlagSet("key", flag.ExitOnError)
 	listCmd := flag.NewFlagSet("list", flag.ExitOnError)
 	showCmd := flag.NewFlagSet("show", flag.ExitOnError)
-	cleanCmd := flag.NewFlagSet("clean", flag.ExitOnError)
+	hideCmd := flag.NewFlagSet("hide", flag.ExitOnError)
 
 	vaultName := vaultCmd.String("name", "", "Specify the vault name")
 
@@ -55,7 +55,7 @@ func main() {
 	showVaultName := showCmd.String("vaultName", "", "Specify the vault name for showing a key")
 	showKeyName := showCmd.String("key", "", "Specify the key name for showing")
 
-	helpCmd := flag.NewFlagSet("help", flag.ExitOnError)
+	//helpCmd := flag.NewFlagSet("help", flag.ExitOnError)
 
 	// Extract the provided by the user SALT
 	scryptSalt, err := os.ReadFile("user-salt.txt")
@@ -188,14 +188,37 @@ func main() {
 						os.Exit(1)
 					}
 
-					// Prompt user for the key password
-					fmt.Print("Enter the key password: ")
-					keyPassword, err := terminal.ReadPassword(int(syscall.Stdin))
-					fmt.Println() // Print a newline after user input
-					if err != nil {
-						fmt.Println("Error reading key password:", err)
-						os.Exit(1)
+					choice := 0
+					var keyPassword []byte
+					fmt.Printf("Make a choice:\n")
+					fmt.Printf("(1)Auto-generate a password / (2) Provide your own password [1/2]:")
+					fmt.Scanln(&choice)
+
+					if choice == 1 {
+						passLength := 0
+						fmt.Println("Specify password length:")
+						fmt.Scanln(&passLength)
+
+						fmt.Println("Generating random password...")
+						securePassword, err := GenerateSecurePassword(passLength)
+						if err != nil {
+							fmt.Println(err)
+						}
+
+						keyPassword = []byte(securePassword)
+
+					} else {
+						// Prompt user for the key password
+						fmt.Print("Enter the key password: ")
+						keyPassword, err = terminal.ReadPassword(int(syscall.Stdin))
+						fmt.Println() // Print a newline after user input
+						if err != nil {
+							fmt.Println("Error reading key password:", err)
+							os.Exit(1)
+						}
 					}
+
+					showHiddenFiles(cryptConfigs)
 
 					// Load the stored configuration from the configuration file
 					configData, err := LoadConfig(*keyVault)
@@ -218,8 +241,6 @@ func main() {
 						os.Exit(1)
 					}
 
-					//fmt.Printf("Stored Key: %x\n", decodedKey)
-
 					// Derive key from the vault password using scrypt
 					derivedKey, err := DeriveUserKey(string(vaultPassword))
 					if err != nil {
@@ -227,17 +248,12 @@ func main() {
 						os.Exit(1)
 					}
 
-					// Print the derived key as a hexadecimal string
-					//fmt.Printf("User Derived Key: %x\n", derivedKey)
-
 					// Compare the derived keys
 					err = CompareKeys(decodedKey, derivedKey)
 					if err != nil {
 						fmt.Println(err)
 						os.Exit(1)
 					}
-
-					//fmt.Printf("User Derived Key: %x\n", derivedKey)
 
 					// Encrypt the password using the derived key
 					encryptedPassword, err := encrypt([]byte(keyPassword), derivedKey)
@@ -262,6 +278,8 @@ func main() {
 						}
 					}
 
+					hideUnencryptedFiles(cryptConfigs)
+
 					// Use the vault name to open the appropriate database
 					db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", *keyVault))
 					if err != nil {
@@ -284,11 +302,6 @@ func main() {
 				}
 			}
 		}
-
-	case "help":
-		helpCmd.Parse(os.Args[2:])
-		// Handle 'help' command logic here
-		fmt.Println("Displaying help...")
 
 	case "list":
 		if len(os.Args) < 3 {
@@ -328,6 +341,8 @@ func main() {
 				os.Exit(1)
 			}
 
+			showHiddenFiles(cryptConfigs)
+
 			// Load the stored configuration from the configuration file
 			configData, err := LoadConfig(vaultName)
 			if err != nil {
@@ -349,17 +364,12 @@ func main() {
 				os.Exit(1)
 			}
 
-			//fmt.Printf("Stored Key: %x\n", decodedKey)
-
 			// Derive key from the vault password using scrypt
 			derivedKey, err := DeriveUserKey(string(vaultPassword))
 			if err != nil {
 				fmt.Println("Error deriving key:", err)
 				os.Exit(1)
 			}
-
-			// Print the derived key as a hexadecimal string
-			//fmt.Printf("User Derived Key: %x\n", derivedKey)
 
 			// Compare the derived keys
 			err = CompareKeys(decodedKey, derivedKey)
@@ -368,7 +378,7 @@ func main() {
 				os.Exit(1)
 			}
 
-			//fmt.Printf("User Derived Key: %x\n", derivedKey)
+			hideUnencryptedFiles(cryptConfigs)
 
 			// Use the vault name to open the appropriate database
 			db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", vaultName))
@@ -424,6 +434,8 @@ func main() {
 			os.Exit(1)
 		}
 
+		showHiddenFiles(cryptConfigs)
+
 		// Load the stored configuration from the configuration file
 		configData, err := LoadConfig(vaultName)
 		if err != nil {
@@ -459,6 +471,8 @@ func main() {
 			os.Exit(1)
 		}
 
+		hideUnencryptedFiles(cryptConfigs)
+
 		// Use the vault name to open the appropriate database
 		db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", vaultName))
 		if err != nil {
@@ -486,9 +500,6 @@ func main() {
 			os.Exit(1)
 		}
 
-		// Print the decrypted password to the terminal
-		//fmt.Printf("Decrypted Password for Key %s in Vault %s: %s\n", keyName, vaultName, decryptedPassword)
-
 		// Copy the decrypted password to the clipboard
 		err = clipboard.WriteAll(string(decryptedPassword))
 		if err != nil {
@@ -498,18 +509,22 @@ func main() {
 
 		fmt.Println("Password copied to clipboard.")
 
-	case "clean":
-		cleanCmd.Parse(os.Args[2:])
-		if cleanCmd.Parsed() {
-			err := cleanUnencryptedFiles(cryptConfigs)
+	case "hide":
+		hideCmd.Parse(os.Args[2:])
+		if hideCmd.Parsed() {
+			err := hideUnencryptedFiles(cryptConfigs)
 			if err != nil {
-				fmt.Println("Error cleaning unencrypted files:", err)
+				fmt.Println("Error hidding unencrypted files:", err)
 				os.Exit(1)
 			}
-			fmt.Println("Unencrypted files cleaned successfully.")
+			fmt.Println("Unencrypted files hidden successfully.")
 		}
+
+	case "help":
+		printHelp()
+		os.Exit(0)
 	default:
-		fmt.Println("Unknown command. Please use 'create' or 'help'")
+		fmt.Println("Unknown command. Please use 'help' if you need assistance!")
 		os.Exit(1)
 	}
 }
