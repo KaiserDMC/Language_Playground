@@ -92,14 +92,14 @@ func main() {
 					}
 
 					// Check if "vaults" folder exists
-					folderErr := CreateFolderIfNotExists("vaults")
+					folderErr := CreateFolderIfNotExists(vaultFolder)
 					if folderErr != nil {
 						fmt.Println("Error creating 'vaults' folder:", folderErr)
 						return
 					}
 
 					// Check if the vault already exists
-					vaultDBPath := fmt.Sprintf("./vaults/%s.db", *vaultName)
+					vaultDBPath := fmt.Sprintf("./%s/%s.db", vaultFolder, *vaultName)
 					if _, err := os.Stat(vaultDBPath); err == nil {
 						fmt.Printf("Vault with name %s already exists!\n", *vaultName)
 						os.Exit(1)
@@ -145,7 +145,7 @@ func main() {
 					fmt.Printf("Creating vault with name: %s\n", *vaultName)
 
 					// Create sqlite database for storage of passwords
-					db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", *vaultName))
+					db, err := sql.Open("sqlite3", fmt.Sprintf("./%s/%s.db", vaultFolder, *vaultName))
 					if err != nil {
 						fmt.Println("Error creating vault:", err)
 						return
@@ -271,7 +271,7 @@ func main() {
 					}
 
 					// Check if "vaults" folder exists
-					if _, err := os.Stat("vaults"); os.IsNotExist(err) {
+					if _, err := os.Stat(vaultFolder); os.IsNotExist(err) {
 						if err != nil {
 							fmt.Println("Error 'vaults' folder does not exist", err)
 							return
@@ -281,7 +281,7 @@ func main() {
 					hideUnencryptedFiles(cryptConfigs)
 
 					// Use the vault name to open the appropriate database
-					db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", *keyVault))
+					db, err := sql.Open("sqlite3", fmt.Sprintf("./%s/%s.db", vaultFolder, *keyVault))
 					if err != nil {
 						fmt.Println("Error opening database:", err)
 						os.Exit(1)
@@ -313,7 +313,7 @@ func main() {
 
 		if *listVaults {
 			// List all vaults
-			files, err := os.ReadDir("vaults")
+			files, err := os.ReadDir(vaultFolder)
 			if err != nil {
 				fmt.Println("Error listing vaults:", err)
 				os.Exit(1)
@@ -381,7 +381,7 @@ func main() {
 			hideUnencryptedFiles(cryptConfigs)
 
 			// Use the vault name to open the appropriate database
-			db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", vaultName))
+			db, err := sql.Open("sqlite3", fmt.Sprintf("./%s/%s.db", vaultFolder, vaultName))
 			if err != nil {
 				fmt.Println("Error opening database:", err)
 				os.Exit(1)
@@ -474,7 +474,7 @@ func main() {
 		hideUnencryptedFiles(cryptConfigs)
 
 		// Use the vault name to open the appropriate database
-		db, err := sql.Open("sqlite3", fmt.Sprintf("./vaults/%s.db", vaultName))
+		db, err := sql.Open("sqlite3", fmt.Sprintf("./%s/%s.db", vaultFolder, vaultName))
 		if err != nil {
 			fmt.Println("Error opening database:", err)
 			os.Exit(1)
