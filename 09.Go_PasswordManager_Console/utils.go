@@ -1,11 +1,13 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
+	"syscall"
+
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 // CreateFolderIfNotExists creates a folder if it doesn't exist.
@@ -19,6 +21,14 @@ func CreateFolderIfNotExists(folderPath string) error {
 // SaveToFile saves data to a file with the given filepath.
 func SaveToFile(filepath string, data []byte) error {
 	return os.WriteFile(filepath, data, 0600)
+}
+
+// Extracted function to get password from the user
+func readPassword(prompt string) ([]byte, error) {
+	fmt.Print(prompt)
+	password, err := terminal.ReadPassword(int(syscall.Stdin))
+	fmt.Println() // Print a newline after user input
+	return password, err
 }
 
 // Function to clean unencrypted files
@@ -99,15 +109,16 @@ func printHelp() {
 	fmt.Println("Usage:")
 	fmt.Printf("%s <command> [flags]\n", os.Args[0])
 	fmt.Println("\nCommands:")
+	fmt.Println("\n[1.] Create a new Password Storage Vault:")
 	fmt.Println("  create vault -name <vault_name>")
+	fmt.Println("\n[2.] Create a new Key inside of already existing Password Storage Vault:")
 	fmt.Println("  create key -vault <vault_name> -name <key_name> -url <key_url>")
+	fmt.Println("\n[3.] List all currently available Password Storage Vaults:")
 	fmt.Println("  list -vaults")
+	fmt.Println("\n[4.] List the name and url of all Keys in a specific Password Storage Vault:")
 	fmt.Println("  list -keys -vaultName <vault_name>")
+	fmt.Println("\n[5.] Copy the requested Key from Password Storage Vault to User's Clipboard:")
 	fmt.Println("  show -vaultName <vault_name> -key <key_name>")
-	fmt.Println("  hide -vaultName <vault_name> -key <key_name>")
-
-	fmt.Println("\nFlags:")
-	flag.VisitAll(func(f *flag.Flag) {
-		fmt.Printf("  -%s\t%s\n", f.Name, f.Usage)
-	})
+	fmt.Println("\n[6.] Hide sensitive data files:")
+	fmt.Println("  hide")
 }
