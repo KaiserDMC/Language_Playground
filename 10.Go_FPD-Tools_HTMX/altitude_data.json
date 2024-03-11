@@ -13,7 +13,7 @@
     }
   },
   {
-    "Altitude": "1 000.0",
+    "Altitude": "1000",
     "ConversionFactors": {
       "ISA-30": 0.9601,
       "ISA-20": 0.9787,
@@ -26,7 +26,7 @@
     }
   },
   {
-    "Altitude": "2 000.0",
+    "Altitude": "2000",
     "ConversionFactors": {
       "ISA-30": 0.974,
       "ISA-20": 0.993,
@@ -39,7 +39,7 @@
     }
   },
   {
-    "Altitude": "3 000.0",
+    "Altitude": "3000",
     "ConversionFactors": {
       "ISA-30": 0.9882,
       "ISA-20": 1.0076,
@@ -52,7 +52,7 @@
     }
   },
   {
-    "Altitude": "4 000.0",
+    "Altitude": "4000",
     "ConversionFactors": {
       "ISA-30": 1.0027,
       "ISA-20": 1.0225,
@@ -65,7 +65,7 @@
     }
   },
   {
-    "Altitude": "5 000.0",
+    "Altitude": "5000",
     "ConversionFactors": {
       "ISA-30": 1.0175,
       "ISA-20": 1.0378,
@@ -78,7 +78,7 @@
     }
   },
   {
-    "Altitude": "6 000.0",
+    "Altitude": "6000",
     "ConversionFactors": {
       "ISA-30": 1.0327,
       "ISA-20": 1.0534,
@@ -91,7 +91,7 @@
     }
   },
   {
-    "Altitude": "7 000.0",
+    "Altitude": "7000",
     "ConversionFactors": {
       "ISA-30": 1.0481,
       "ISA-20": 1.0694,
@@ -104,7 +104,7 @@
     }
   },
   {
-    "Altitude": "8 000.0",
+    "Altitude": "8000",
     "ConversionFactors": {
       "ISA-30": 1.0639,
       "ISA-20": 1.0857,
@@ -117,7 +117,7 @@
     }
   },
   {
-    "Altitude": "9 000.0",
+    "Altitude": "9000",
     "ConversionFactors": {
       "ISA-30": 1.0801,
       "ISA-20": 1.1024,
@@ -130,7 +130,7 @@
     }
   },
   {
-    "Altitude": "10 000.0",
+    "Altitude": "10000",
     "ConversionFactors": {
       "ISA-30": 1.0967,
       "ISA-20": 1.1194,
@@ -143,7 +143,7 @@
     }
   },
   {
-    "Altitude": "11 000.0",
+    "Altitude": "11000",
     "ConversionFactors": {
       "ISA-30": 1.1136,
       "ISA-20": 1.1369,
@@ -156,7 +156,7 @@
     }
   },
   {
-    "Altitude": "12 000.0",
+    "Altitude": "12000",
     "ConversionFactors": {
       "ISA-30": 1.1309,
       "ISA-20": 1.1547,
@@ -169,7 +169,7 @@
     }
   },
   {
-    "Altitude": "13 000.0",
+    "Altitude": "13000",
     "ConversionFactors": {
       "ISA-30": 1.1485,
       "ISA-20": 1.173,
@@ -182,7 +182,7 @@
     }
   },
   {
-    "Altitude": "14 000.0",
+    "Altitude": "14000",
     "ConversionFactors": {
       "ISA-30": 1.1666,
       "ISA-20": 1.1917,
@@ -195,7 +195,7 @@
     }
   },
   {
-    "Altitude": "15 000.0",
+    "Altitude": "15000",
     "ConversionFactors": {
       "ISA-30": 1.1852,
       "ISA-20": 1.2108,
@@ -208,7 +208,7 @@
     }
   },
   {
-    "Altitude": "16 000.0",
+    "Altitude": "16000",
     "ConversionFactors": {
       "ISA-30": 1.2041,
       "ISA-20": 1.2304,
@@ -221,7 +221,7 @@
     }
   },
   {
-    "Altitude": "17 000.0",
+    "Altitude": "17000",
     "ConversionFactors": {
       "ISA-30": 1.2235,
       "ISA-20": 1.2505,
@@ -234,7 +234,7 @@
     }
   },
   {
-    "Altitude": "18 000.0",
+    "Altitude": "18000",
     "ConversionFactors": {
       "ISA-30": 1.2434,
       "ISA-20": 1.271,
@@ -247,7 +247,7 @@
     }
   },
   {
-    "Altitude": "19 000.0",
+    "Altitude": "19000",
     "ConversionFactors": {
       "ISA-30": 1.2637,
       "ISA-20": 1.2921,
@@ -260,7 +260,7 @@
     }
   },
   {
-    "Altitude": "20 000.0",
+    "Altitude": "20000",
     "ConversionFactors": {
       "ISA-30": 1.2846,
       "ISA-20": 1.3136,
@@ -273,7 +273,7 @@
     }
   },
   {
-    "Altitude": "21 000.0",
+    "Altitude": "21000",
     "ConversionFactors": {
       "ISA-30": 1.3059,
       "ISA-20": 1.3357,
@@ -286,7 +286,7 @@
     }
   },
   {
-    "Altitude": "22 000.0",
+    "Altitude": "22000",
     "ConversionFactors": {
       "ISA-30": 1.3278,
       "ISA-20": 1.3584,
@@ -299,7 +299,7 @@
     }
   },
   {
-    "Altitude": "23 000.0",
+    "Altitude": "23000",
     "ConversionFactors": {
       "ISA-30": 1.3502,
       "ISA-20": 1.3816,
@@ -312,7 +312,7 @@
     }
   },
   {
-    "Altitude": "24 000.0",
+    "Altitude": "24000",
     "ConversionFactors": {
       "ISA-30": 1.3731,
       "ISA-20": 1.4054,

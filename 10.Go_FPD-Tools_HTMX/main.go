@@ -6,8 +6,10 @@ import (
 	"html/template"
 	"io"
 	"log"
+	"math"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 type AltitudeData struct {
@@ -79,7 +81,88 @@ func main() {
 	}
 
 	http.HandleFunc("/", handler)
+	http.HandleFunc("/calculateTAS", calculateTAS)
 
 	fmt.Println("Server is running on :5050...")
 	log.Fatal(http.ListenAndServe(":5050", nil))
+}
+
+func calculateTAS(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		err := r.ParseForm()
+		if err != nil {
+			http.Error(w, "Error parsing form", http.StatusInternalServerError)
+			return
+		}
+
+		ias := r.FormValue("ias")
+		alt := r.FormValue("alt")
+		isa := r.FormValue("isa")
+
+		// Check if values for table are present
+		if len(altitudeData) == 0 {
+			fmt.Errorf("altitudeData is empty")
+		}
+
+		targetAltitude := convertStringToInt(alt)
+		if err != nil {
+			http.Error(w, "Error converting altitude to integer", http.StatusInternalServerError)
+			return
+		}
+
+		_, closestIndex, err := findClosestAltitude(targetAltitude)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		key := fmt.Sprintf("ISA%v", isa)
+		calculatedTAS := float64(altitudeData[closestIndex].ConversionFactors[key]) * convertStringToFloat(ias)
+		calculatedTASStr := fmt.Sprintf("%.2f", calculatedTAS)
+
+		response := map[string]string{"calculatedTAS": calculatedTASStr}
+		jsonResponse, err := json.Marshal(response)
+		if err != nil {
+			http.Error(w, "Error marshalling JSON", http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(jsonResponse)
+
+		return
+	}
+
+	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+}
+
+func convertStringToInt(altitudeStr string) int {
+	altitude, _ := strconv.Atoi(altitudeStr)
+	return altitude
+}
+
+func convertStringToFloat(altitudeStr string) float64 {
+	altitude, _ := strconv.ParseFloat(altitudeStr, 64)
+	return altitude
+}
+
+func findClosestAltitude(targetAltitude int) (*AltitudeData, int, error) {
+	if len(altitudeData) == 0 {
+		return nil, -1, fmt.Errorf("altitudeData is empty")
+	}
+
+	closestIndex := 0
+	minDifference := math.Abs(float64(targetAltitude - convertStringToInt(altitudeData[0].Altitude)))
+
+	for i := 1; i < len(altitudeData); i++ {
+		currentAltitude := convertStringToInt(altitudeData[i].Altitude)
+		currentDifference := math.Abs(float64(targetAltitude - currentAltitude))
+
+		if currentDifference < minDifference {
+			minDifference = currentDifference
+			closestIndex = i
+		}
+	}
+
+	return &altitudeData[closestIndex], closestIndex, nil
 }

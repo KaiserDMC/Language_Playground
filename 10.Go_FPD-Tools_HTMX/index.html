@@ -25,40 +25,161 @@
     <h1 class="text-center">Flight Procedure Design Toolbox</h1>
     <br />
 
-    <h2 class="text-center">IAS to TAS Convertion table</h2>
-    <table
-      class="table table-bordered table-stripped table-sm table-hover justify-content-center"
-      id="ias-to-tas-table"
-    >
-      <thead class="table-secondary">
-        <tr>
-          <th rowspan="2" class="text-center align-middle">Altitude (feet)</th>
-          <th colspan="9" scope="colgroup" class="text-center">
-            Conversion factor
-          </th>
-        </tr>
-        <tr>
-          <th scope="col" class="text-center">ISA-30</th>
-          <th scope="col" class="text-center">ISA-20</th>
-          <th scope="col" class="text-center">ISA-10</th>
-          <th scope="col" class="text-center">ISA</th>
-          <th scope="col" class="text-center">ISA+10</th>
-          <th scope="col" class="text-center">ISA+15</th>
-          <th scope="col" class="text-center">ISA+20</th>
-          <th scope="col" class="text-center">ISA+30</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        {{ range $altitude, $data := . }}
-        <tr class="text-center">
-          <td>{{.Altitude}}</td>
-          {{ $sortedKeys := sortMapKeys .ConversionFactors }} {{ range $factor
-          := $sortedKeys }}
-          <td>{{index $data.ConversionFactors $factor}}</td>
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-sm-6 d-flex flex-column">
+          <form class="h-100" hx-post="/calculateTAS">
+            <div class="form-group mb-2">
+              <label for="ias">IAS:</label>
+              <input
+                type="text"
+                id="ias"
+                name="ias"
+                placeholder="250"
+                class="form-control"
+                required
+              />
+              <small class="form-text text-muted">In kts.</small>
+            </div>
+            <div class="form-group mb-2">
+              <label for="alt">Altitude:</label>
+              <input
+                type="text"
+                id="alt"
+                name="alt"
+                placeholder="10"
+                class="form-control"
+                required
+              />
+              <small class="form-text text-muted">In whole number of ft.</small>
+            </div>
+            <div class="form-group mb-2">
+              <label for="isa">ISA Temperature:</label>
+              <input
+                type="text"
+                id="isa"
+                name="isa"
+                placeholder="-10"
+                class="form-control"
+                required
+              />
+              <small class="form-text text-muted"
+                >Only the number with or without sign.</small
+              >
+            </div>
+            <button
+              type="submit"
+              class="btn btn-success"
+              hx-target="#result"
+              hx-swap="outerHTML"
+            >
+              Calculate
+            </button>
+          </form>
+        </div>
+
+        <div class="col-sm-6 d-flex flex-column">
+          <div id="results" class="d-flex flex-column align-items-start h-100">
+            <p>
+              <label for="tabled-results">Table value:</label>
+              <a id="tabled-results" class="btn btn-sm btn-secondary"
+                >Result A</a
+              >
+              <small class="form-text text-muted"
+                >Closest table value. Highest value used.</small
+              >
+            </p>
+            <p>
+              <label for="calculated-results">Table calculated:</label>
+              <a id="calculated-results" class="btn btn-sm btn-secondary"
+                >Result B</a
+              >
+              <small class="form-text text-muted"
+                >Calculated table value. No interpolation. Rounded up.</small
+              >
+            </p>
+            <p>
+              <label for="calculated-results-interpolation"
+                >Table calculated:</label
+              >
+              <a
+                id="calculated-results-interpolation"
+                class="btn btn-sm btn-secondary"
+                >Result C</a
+              >
+              <small class="form-text text-muted"
+                >Calculated table value. Interpolated.</small
+              >
+            </p>
+            <p>
+              <label for="calculated-results-compression"
+                >Formula calculated:</label
+              >
+              <a
+                id="calculated-results-compression"
+                class="btn btn-sm btn-secondary"
+                >Result D</a
+              >
+              <small class="form-text text-muted"
+                >Calculated formula value. No compressibility.</small
+              >
+            </p>
+            <p>
+              <label for="calculated-results-compression"
+                >Formula calculated:</label
+              >
+              <a
+                id="calculated-results-compression"
+                class="btn btn-sm btn-secondary"
+                >Result E</a
+              >
+              <small class="form-text text-muted"
+                >Calculated formula value. Air compressibility used.</small
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-center">IAS to TAS Convertion table</h2>
+      <table
+        class="table table-bordered table-stripped table-sm table-hover justify-content-center"
+        id="ias-to-tas-table"
+      >
+        <thead class="table-secondary">
+          <tr>
+            <th rowspan="2" class="text-center align-middle">
+              Altitude (feet)
+            </th>
+            <th colspan="9" scope="colgroup" class="text-center">
+              Conversion factor
+            </th>
+          </tr>
+          <tr>
+            <th scope="col" class="text-center">ISA-30</th>
+            <th scope="col" class="text-center">ISA-20</th>
+            <th scope="col" class="text-center">ISA-10</th>
+            <th scope="col" class="text-center">ISA</th>
+            <th scope="col" class="text-center">ISA+10</th>
+            <th scope="col" class="text-center">ISA+15</th>
+            <th scope="col" class="text-center">ISA+20</th>
+            <th scope="col" class="text-center">ISA+30</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {{ range $altitude, $data := . }}
+          <tr class="text-center">
+            <td>{{.Altitude}}</td>
+            {{ $sortedKeys := sortMapKeys .ConversionFactors }} {{ range $factor
+            := $sortedKeys }}
+            <td>{{index $data.ConversionFactors $factor}}</td>
+            {{ end }}
+          </tr>
           {{ end }}
-        </tr>
-        {{ end }}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
