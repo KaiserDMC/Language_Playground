@@ -1,3 +1,0 @@
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/ConsoleApp_CalculatorOfThings.dir
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/ConsoleApp_CalculatorOfThings/cmake-build-debug/CMakeFiles/rebuild_cache.dir

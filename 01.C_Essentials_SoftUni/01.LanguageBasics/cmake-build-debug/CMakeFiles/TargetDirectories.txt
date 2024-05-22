@@ -1,3 +1,0 @@
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/01.LanguageBasics/cmake-build-debug/CMakeFiles/01_LanguageBasics.dir
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/01.LanguageBasics/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/01.LanguageBasics/cmake-build-debug/CMakeFiles/rebuild_cache.dir

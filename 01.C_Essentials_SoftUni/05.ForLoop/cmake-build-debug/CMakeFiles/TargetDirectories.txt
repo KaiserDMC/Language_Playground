@@ -1,3 +1,0 @@
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/05.ForLoop/cmake-build-debug/CMakeFiles/05_ForLoop.dir
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/05.ForLoop/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/JetBrains Projects/CLionProjects/ANSI C/Study Projects/C_Essentials_SoftUni/05.ForLoop/cmake-build-debug/CMakeFiles/rebuild_cache.dir
