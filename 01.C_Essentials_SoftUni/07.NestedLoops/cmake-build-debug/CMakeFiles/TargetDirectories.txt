@@ -1,3 +1,0 @@
-F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/CMakeFiles/07_NestedLoops.dir
-F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/Others/Language Playground/01.C_Essentials_SoftUni/07.NestedLoops/cmake-build-debug/CMakeFiles/rebuild_cache.dir
