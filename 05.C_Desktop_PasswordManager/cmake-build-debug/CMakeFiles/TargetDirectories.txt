@@ -1,3 +1,0 @@
-F:/OtakuDevs/DesktopPasswordManager/cmake-build-debug/CMakeFiles/DesktopPasswordManager.dir
-F:/OtakuDevs/DesktopPasswordManager/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/OtakuDevs/DesktopPasswordManager/cmake-build-debug/CMakeFiles/rebuild_cache.dir
