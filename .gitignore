@@ -51,4 +51,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-05.Go_ToDoList_withDB/htmx_todo_app
+
+# Personal
+**/cmake-build-debug/
